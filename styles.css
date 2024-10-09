@@ -68,7 +68,7 @@ button:hover {
   background-color: #218838;
 }
 
-#resultado {
+#result {
   margin-top: 20px;
   font-size: 18px;
   color: #343a40;
@@ -76,11 +76,11 @@ button:hover {
 
 @media (max-width: 600px) {
   .container {
-    width: 90%;
-    padding: 20px;
+      width: 90%;
+      padding: 20px;
   }
 
   h1 {
-    font-size: 20px;
+      font-size: 20px;
   }
 }
