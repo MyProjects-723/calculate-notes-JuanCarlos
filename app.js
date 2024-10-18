@@ -1,41 +1,41 @@
 const username = document.getElementById('name');
-const note1 = document.getElementById('note1');
-const note2 = document.getElementById('note2');
-const note3 = document.getElementById('note3');
-const calculateButton = document.getElementById('btn-calculate');
-const response = document.getElementById('result');
-const predictButton = document.getElementById('btn-predict');
+const data1 = document.getElementById('note1');
+const data2 = document.getElementById('note2');
+const data3 = document.getElementById('note3');
+const btnCalculate = document.getElementById('btn-calculate');
+const predict = document.getElementById('btn-predict');
+const response = document.getElementById('Answer');
 
+btnCalculate.addEventListener('click', calculateNote);
+predict.addEventListener('click',calculatepredict );
 
-calculateButton.addEventListener("click", calculateNote);
-predictButton.addEventListener("click", predictMinimumNote);
+function calculateNote() {
+  let user = username.value;
+  let note1 = Number(data1.value);
+  let note2 = Number(data2.value);
+  let note3 = Number(data3.value);
+  let result = ((note1 * .3) + (note2 * .3) + (note3 * .4));
 
-function calculateNote(event) {
-    event.preventDefault(); 
-    let user = username.value;
-    let note1Value = Number(note1.value);
-    let note2Value = Number(note2.value);
-    let note3Value = Number(note3.value);
-    let result = (note1Value * 0.3) + (note2Value * 0.3) + (note3Value * 0.4);
-    
-    if (result < 3.0) {
-        response.textContent = `Hola ${user}. Reprobaste el curso :(`;
-        response.style.color = 'red';
-    } else if (result > 3.0) {
-        response.textContent = `Hola ${user}. Aprobaste el curso :)`;
-        response.style.color = 'green';
-    }
+  if (result >1.0  && result <= 3.5) {
+    response.textContent = `Hola ${user}, su nota definitiva es: ${result}, perdió la materia.`;
+  } else if (result >= 3.6 && result <= 4.5) {
+    response.textContent = `Hola ${user}, su nota definitiva es: ${result}, ganó la materia.`;
+  } else if (result >= 4.6 && result <= 5) {
+    response.textContent = `Hola ${user}, su nota definitiva es: ${result}, su nota es sobresaliente.`;
+  } else {
+    response.textContent = `Hola ${user}, alguna de sus notas es inválida, revise.`;
+  }
 }
 
-function predictMinimumNote() {
-    let note1Value = Number(note1.value);
-    let note2Value = Number(note2.value);
-    
-    let requiredNote3 = (3.5 - (note1Value * 0.3 + note2Value * 0.3)) / 0.4;
-
-    if (requiredNote3 < 0) requiredNote3 = 0; 
-    note3.value = requiredNote3.toFixed(2); 
-}
+function calculatepredict() {
+    let user= username.value
+    let note1 = Number(data1.value)
+    let note2 = Number(data2.value)
+    let resultpredict = (3.5-((note1 * 0.3) + (note2 * 0.3))) / 0.4 
+    let resultpredict1= resultpredict.toFixed(2)
 
 
+    response.textContent= `Hola ${user} para ganar la materia, en la nota 3 tiene que sacar:  ${resultpredict1}`
+    response.style.color='black';
+  }
 
